@@ -2,21 +2,21 @@
 {
     public class Application : IApplication
     {
-        IServiceRunner _folderSync;
+        IServiceRunner _serviceRunner;
 
-        public Application(IServiceRunner folderSync)
+        public Application(IServiceRunner runner)
         {
-            _folderSync = folderSync;
+            _serviceRunner = runner;
         }
 
         public void Start()
         {
-            _folderSync.Start();
+            _serviceRunner.Start();
         }
 
         public void Stop()
         {
-            _folderSync.Stop();
+            _serviceRunner.Stop();
         }
     }
 }

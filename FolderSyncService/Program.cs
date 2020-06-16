@@ -28,9 +28,9 @@ namespace FolderSyncService
 
                 x.RunAsLocalSystem();
 
-                x.SetServiceName("PrintDaddy");
-                x.SetDisplayName("Print Daddy");
-                x.SetDescription("This service prints new documents as they become ready from the remote server.");
+                x.SetServiceName("FolderSync");
+                x.SetDisplayName("FolderSync");
+                x.SetDescription("This service modifies files from specified directories to another whenever a change is made to the originating directory.");
             });
 
             int exitCodeValue = (int)Convert.ChangeType(exitCode, exitCode.GetTypeCode());

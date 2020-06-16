@@ -1,7 +1,9 @@
-﻿namespace FolderSync.FileSystem.Listening
+﻿using FolderSync.Services;
+
+namespace FolderSync.FileSystem.Listening
 {
 	public interface ISyncFolderGroup
 	{
-		ISyncFolderPair[] GetSyncFolders();
+		IEventDrivenService[] GetServices();
 	}
 }

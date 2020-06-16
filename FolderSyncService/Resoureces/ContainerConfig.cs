@@ -35,13 +35,14 @@ namespace FolderSyncService
             IValidator validator = new RemoteConnectionValidator(networkInfoProvider);
 
             //Register types here, in order of program flow;
+            builder.RegisterType<Application>().As<IApplication>();
             builder.RegisterType<ServiceRunner>().As<IServiceRunner>();
 
             builder.RegisterInstance(pairs).As<ISyncFolderPair[]>();
             builder.RegisterType<SyncFolderGroup>().As<ISyncFolderGroup>();
             builder.RegisterType<ModifierHost>().As<IFileModifier>();
             builder.RegisterInstance(validator).As<IValidator>();
-
+            
 
 
             return builder.Build();

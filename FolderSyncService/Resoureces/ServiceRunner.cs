@@ -13,14 +13,14 @@ namespace FolderSyncService
         public event EventHandler Started;
         public event EventHandler Stopped;
 
-        private IEnumerable<IEventDrivenService> _services;
+        private IEventDrivenService[] _eventDrivenServices;
 
         /// <summary>
         /// Default constructor. Designated for use with Topshelf.HostFactory.
         /// </summary>
-        public ServiceRunner(IEnumerable<IEventDrivenService> services)
+        public ServiceRunner(ISyncFolderGroup syncFolderGroup)
         {
-            _services = services;
+            _eventDrivenServices = syncFolderGroup.GetServices();
         }
 
         private void Time_Elapsed(object sender, ElapsedEventArgs e)
@@ -33,7 +33,7 @@ namespace FolderSyncService
         /// </summary>
         public void Start()
         {
-            foreach (IEventDrivenService service in _services)
+            foreach (IEventDrivenService service in _eventDrivenServices)
             {
                 service.StayAlive.Elapsed += Time_Elapsed;
                 service.StayAlive.Start();
@@ -46,7 +46,7 @@ namespace FolderSyncService
         /// </summary>
         public void Stop()
         {
-            foreach(IEventDrivenService service in _services)
+            foreach(IEventDrivenService service in _eventDrivenServices)
             {
                 service.StayAlive.Stop();
             }

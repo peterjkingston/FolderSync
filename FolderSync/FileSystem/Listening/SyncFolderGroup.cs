@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FolderSync.FileSystem.Editing;
 using FolderSync.FileSystem.Validation;
+using FolderSync.Services;
 
 namespace FolderSync.FileSystem.Listening
 {
@@ -21,14 +22,14 @@ namespace FolderSync.FileSystem.Listening
 			_fileModifier = fileModifier;
 		}
 
-		public ISyncFolderPair[] GetSyncFolders()
+		public IEventDrivenService[] GetServices()
 		{
 			List<SyncedFolder> syncedFolders = new List<SyncedFolder>();
 			foreach (ISyncFolderPair pair in _syncFolderPairs)
 			{
 				syncedFolders.Add(new SyncedFolder(pair, _validator, _fileModifier));
 			}
-			return (ISyncFolderPair[])syncedFolders.ToArray();
+			return syncedFolders.ToArray();
 		}
 	}
 }
