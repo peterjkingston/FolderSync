@@ -18,7 +18,7 @@ namespace FolderSyncService
 
             ISyncFolderPair[] pairs;
             {
-                string sourcePath = @".\SyncedFolders";
+                string sourcePath = @".\SyncedFolders.json";
                 using (JsonReader reader = new JsonTextReader(new StreamReader(File.OpenRead(sourcePath))))
                 {
                     pairs = (ISyncFolderPair[])(new JsonSerializer().Deserialize(reader));
@@ -26,7 +26,7 @@ namespace FolderSyncService
             }
             INetworkInfoProvider networkInfoProvider;
             {
-                string sourcePath = @".\NetworkInfo";
+                string sourcePath = @".\NetworkInfo.json";
                 using (JsonReader reader = new JsonTextReader(new StreamReader(File.OpenRead(sourcePath))))
                 {
                     networkInfoProvider = (INetworkInfoProvider)(new JsonSerializer().Deserialize(reader));
