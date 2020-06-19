@@ -106,7 +106,9 @@ namespace FolderSync.Network
 
 		public void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
-			info.AddValue("Ipv4", Ipv4.ToString());
+			string ipv4 = Ipv4 == null ? Dns.GetHostEntry(string.Empty).AddressList.First((x) => x.AddressFamily == AddressFamily.InterNetwork).ToString() : Ipv4.ToString();
+			info.AddValue("Ipv4", ipv4);
+
 			info.AddValue("HostName", HostName);
 		}
 

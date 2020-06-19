@@ -70,7 +70,7 @@ namespace FolderSync.FileSystem.Listening
         {
             if (_validator.Valid())
             {
-                _fileModifier.ModifyFile(filePath, updateType, renameFilename);
+                _fileModifier.ModifyFile(this, filePath, updateType, renameFilename);
             }
         }
 
@@ -78,7 +78,7 @@ namespace FolderSync.FileSystem.Listening
         {
             if (_validator.Valid())
             {
-                _fileModifier.ModifyFolder(folderPath, updateType, renameFile);
+                _fileModifier.ModifyFolder(this, folderPath, updateType, renameFile);
             }
         }
     }

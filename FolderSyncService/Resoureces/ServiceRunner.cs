@@ -55,12 +55,12 @@ namespace FolderSyncService
 
         protected virtual void OnStarted(EventArgs e)
         {
-            Started(this, e);
+            Started?.Invoke(this, e);
         }
 
         protected virtual void OnStopped(EventArgs e)
         {
-            Stopped(this, e);
+            Stopped?.Invoke(this, e);
         }
     }
 }
