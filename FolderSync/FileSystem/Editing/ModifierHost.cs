@@ -10,16 +10,16 @@ namespace FolderSync.FileSystem.Editing
 {
 	public class ModifierHost : IFileModifier
 	{
-        public ISyncedFolder SyncedFolder { get; }
+        public ISyncedFolder SyncedFolder { get; set; }
 
-        public ModifierHost(ISyncedFolder syncedFolder)
+        public ModifierHost()
         {
-            SyncedFolder = syncedFolder;
         }
 
 
-		public void ModifyFile(string filePath, UpdateType updateType, string renameFilename)
+		public void ModifyFile(ISyncedFolder syncFolder, string filePath, UpdateType updateType, string renameFilename)
 		{
+            SyncedFolder = syncFolder;
             string remotePath = GetRemotePath(filePath);
             switch (updateType)
             {
@@ -40,8 +40,9 @@ namespace FolderSync.FileSystem.Editing
             }
         }
 
-		public void ModifyFolder(string folderPath, UpdateType updateType, string renameFile)
+		public void ModifyFolder(ISyncedFolder syncFolder, string folderPath, UpdateType updateType, string renameFile)
 		{
+            SyncedFolder = syncFolder;
             string remotePath = GetRemotePath(folderPath);
             switch (updateType)
             {
