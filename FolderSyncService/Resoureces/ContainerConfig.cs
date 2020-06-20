@@ -23,7 +23,7 @@ namespace FolderSyncService
             ISyncFolderPair[] pairs;
             {
                 string sourcePath = @".\SyncedFolders.json";
-                if (!File.Exists(sourcePath)) { File.Create(sourcePath); Thread.Sleep(5); }
+                if (!File.Exists(sourcePath)) { using (FileStream fs = File.Create(sourcePath)) { fs.Close(); }  }
                 using (JsonReader reader = new JsonTextReader(new StreamReader(File.OpenRead(sourcePath))))
                 {
                     pairs = new JsonSerializer().Deserialize<ISyncFolderPair[]>(reader);
