@@ -18,9 +18,9 @@ namespace Test_FolderSync.FileSystem.Editing
 			//Arrange
 			Checker checker = new Checker();
 			ISyncedFolder folder = new MockClasses.SyncedFolder(checker);
-			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost(folder);
+			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost();
 			string tempPath = MethodBase.GetCurrentMethod().Name;
-			string otherPath = MethodBase.GetCurrentMethod().Name + "somethingorRather";
+			string otherPath = Path.Combine(@".\Remote",MethodBase.GetCurrentMethod().Name);
 			string testMessage = "Test";
 
 			using (FileStream fs = File.Create(tempPath)) { fs.Close(); }
@@ -33,7 +33,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			string expected = testMessage;
 
 			//Act
-			modifierHost.ModifyFile(tempPath, updateType, "");
+			modifierHost.ModifyFile(folder, tempPath, updateType, "");
 			string actual = File.ReadAllText(otherPath);
 			File.Delete(tempPath);
 			File.Delete(otherPath);
@@ -48,7 +48,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			//Arrange
 			Checker checker = new Checker();
 			ISyncedFolder folder = new MockClasses.SyncedFolder(checker);
-			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost(folder);
+			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost();
 			string tempPath = MethodBase.GetCurrentMethod().Name;
 
 			using (FileStream fs = File.Create(tempPath)) { fs.Close(); }
@@ -59,7 +59,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			bool expected = true;
 
 			//Act
-			modifierHost.ModifyFile(tempPath, updateType, "");
+			modifierHost.ModifyFile(folder, tempPath, updateType, "");
 			Thread.Sleep(5);
 			bool actual = File.Exists(tempPath);
 			File.Delete(tempPath);
@@ -74,7 +74,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			//Arrange
 			Checker checker = new Checker();
 			ISyncedFolder folder = new MockClasses.SyncedFolder(checker);
-			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost(folder);
+			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost();
 			string tempPath = MethodBase.GetCurrentMethod().Name;
 			string remotePath = $"Remote\\{tempPath}";
 
@@ -87,7 +87,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			bool expected = false;
 
 			//Act
-			modifierHost.ModifyFile(tempPath, updateType, "");
+			modifierHost.ModifyFile(folder, tempPath, updateType, "");
 			Thread.Sleep(1);
 			bool actual = File.Exists(remotePath);
 			if (File.Exists(tempPath)){ File.Delete(tempPath); }
@@ -103,7 +103,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			//Arrange
 			Checker checker = new Checker();
 			ISyncedFolder folder = new MockClasses.SyncedFolder(checker);
-			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost(folder);
+			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost();
 			string tempPath = MethodBase.GetCurrentMethod().Name;
 			string otherPath = MethodBase.GetCurrentMethod().Name + "somethingorRather";
 
@@ -116,7 +116,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			string expected = Path.GetFileName(tempPath);
 
 			//Act
-			modifierHost.ModifyFile(tempPath, updateType, tempPath);
+			modifierHost.ModifyFile(folder, tempPath, updateType, tempPath);
 			Thread.Sleep(1);
 			string actual = Path.GetFileName(otherPath);
 			File.Delete(tempPath);
@@ -132,7 +132,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			//Arrange
 			Checker checker = new Checker();
 			ISyncedFolder folder = new MockClasses.SyncedFolder(checker);
-			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost(folder);
+			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost();
 			string tempPath = MethodBase.GetCurrentMethod().Name;
 			string remotePath = $"Remote\\{tempPath}";
 
@@ -147,7 +147,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			bool expected = true;
 
 			//Act
-			modifierHost.ModifyFolder(tempPath, updateType, "");
+			modifierHost.ModifyFolder(folder, tempPath, updateType, "");
 			Thread.Sleep(1);
 			bool actual = new DirectoryInfo(remotePath).Attributes == new DirectoryInfo(tempPath).Attributes;
 			if (Directory.Exists(tempPath)) { Directory.Delete(tempPath); }
@@ -163,7 +163,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			//Arrange
 			Checker checker = new Checker();
 			ISyncedFolder folder = new MockClasses.SyncedFolder(checker);
-			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost(folder);
+			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost();
 			string tempPath = MethodBase.GetCurrentMethod().Name;
 			string remotePath = $"Remote\\{tempPath}";
 
@@ -175,7 +175,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			bool expected = true;
 
 			//Act
-			modifierHost.ModifyFolder(tempPath, updateType, "");
+			modifierHost.ModifyFolder(folder, tempPath, updateType, "");
 			Thread.Sleep(1);
 			bool actual = Directory.Exists(remotePath);
 			if (Directory.Exists(tempPath)) { Directory.Delete(tempPath); }
@@ -191,7 +191,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			//Arrange
 			Checker checker = new Checker();
 			ISyncedFolder folder = new MockClasses.SyncedFolder(checker);
-			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost(folder);
+			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost();
 			string tempPath = MethodBase.GetCurrentMethod().Name;
 			string remotePath = $"Remote\\{tempPath}";
 
@@ -204,7 +204,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			bool expected = false;
 
 			//Act
-			modifierHost.ModifyFolder(tempPath, updateType, "");
+			modifierHost.ModifyFolder(folder, tempPath, updateType, "");
 			Thread.Sleep(1);
 			bool actual = Directory.Exists(remotePath);
 			if (Directory.Exists(tempPath)) { Directory.Delete(tempPath); }
@@ -226,7 +226,7 @@ namespace Test_FolderSync.FileSystem.Editing
 
 			Checker checker = new Checker();
 			ISyncedFolder folder = new MockClasses.SyncedFolder(checker);
-			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost(folder);
+			FolderSync.FileSystem.Editing.ModifierHost modifierHost = new FolderSync.FileSystem.Editing.ModifierHost();
 			
 
 			UpdateType updateType = UpdateType.Rename;
@@ -234,7 +234,7 @@ namespace Test_FolderSync.FileSystem.Editing
 			string expected = Path.GetFileName(tempPath);
 
 			//Act
-			modifierHost.ModifyFile(tempPath, updateType, tempPath);
+			modifierHost.ModifyFile(folder, tempPath, updateType, tempPath);
 			Thread.Sleep(1);
 			string actual = Path.GetFileName(otherPath);
 			Directory.Delete(tempPath);

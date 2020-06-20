@@ -9,12 +9,12 @@ using Topshelf;
 
 namespace FolderSyncService
 {
-	static class Program
+	public static class Program
 	{
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             //Using the Topshelf method.
             var exitCode = HostFactory.Run(x =>
@@ -32,7 +32,7 @@ namespace FolderSyncService
                 x.SetDisplayName("FolderSync");
                 x.SetDescription("This service modifies files from specified directories to another whenever a change is made to the originating directory.");
             });
-
+            Console.ReadKey(true);
             int exitCodeValue = (int)Convert.ChangeType(exitCode, exitCode.GetTypeCode());
             Environment.ExitCode = exitCodeValue;
         }
