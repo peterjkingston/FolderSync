@@ -1,5 +1,5 @@
 # FolderSync
-Folder Syncronization windows service. Listens to a directory and copies the changes to another directory.
+Folder Syncronization Windows Service app. Listens to a directory and copies the changes to another directory.
 
 ## Installation
 * Build with VS2019
