@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FolderSync.IO
 {
-	public interface IDeserializer<T> where T : ISerializable, new()
+	public interface IDeserializer<T> where T : new()
 	{
 		T Deserialize(string sourcePath, SerializationType serializationType);
 	}

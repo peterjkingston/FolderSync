@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace FolderSync.IO
 {
-	public class Serializer<T> : ISerializer<T> where T : ISerializable, new()
+	public class Serializer<T> : ISerializer<T> where T : new()
 	{
 		public void SerializeToFile(T serializable, SerializationType serializationType, string outfile)
 		{
