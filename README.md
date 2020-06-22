@@ -1,4 +1,4 @@
-# FolderSync
+# FolderSync ![Peter J Kingston](https://peterjkingston.com/favicon-32x32.png) 
 Folder Syncronization Windows Service app. Listens to a directory and copies the changes to another directory.
 
 ## Installation
