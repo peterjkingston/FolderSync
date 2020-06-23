@@ -23,12 +23,11 @@ namespace FolderSyncService
             ISyncFolderPair[] pairs;
             {
                 string sourcePath = @".\SyncedFolders.json";
-                if (!File.Exists(sourcePath)) { File.Create(sourcePath); Thread.Sleep(5); }
+                if (!File.Exists(sourcePath)) { CreateDefaultSyncFolders(sourcePath); }
                 using (JsonReader reader = new JsonTextReader(new StreamReader(File.OpenRead(sourcePath))))
                 {
                     pairs = new JsonSerializer().Deserialize<ISyncFolderPair[]>(reader);
                 }
-                if(pairs == null) { pairs = new SyncedPair[] { new SyncedPair("", "") }; }
             }
             INetworkInfoProvider networkInfoProvider;
             {
@@ -52,9 +51,6 @@ namespace FolderSyncService
             builder.RegisterType<ModifierHost>().As<IFileModifier>();
             builder.RegisterInstance(validator).As<IValidator>();
 
-            
-            
-
 
             return builder.Build();
         }
@@ -64,6 +60,15 @@ namespace FolderSyncService
             Serializer<NetworkInfoProvider> serializer = new Serializer<NetworkInfoProvider>();
             NetworkInfoProvider info = new NetworkInfoProvider();
             serializer.SerializeToFile(info, SerializationType.JSON, sourcePath);
+        }
+
+        private static void CreateDefaultSyncFolders(string sourcePath)
+        {
+            Serializer<List<SyncedPair>> serializer = new Serializer<List<SyncedPair>>();
+            List<SyncedPair> pairs = new List<SyncedPair>();
+            if (!Directory.Exists("Default")) { Directory.CreateDirectory("Default"); }
+            pairs.Add(new SyncedPair("","Default"));
+            serializer.SerializeToFile(pairs, SerializationType.JSON, sourcePath);
         }
     }
 }
