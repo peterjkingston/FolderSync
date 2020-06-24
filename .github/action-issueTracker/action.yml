@@ -16,5 +16,5 @@ runs:
   image: "Dockerfile"
 
 branding:
-  icon: "mic"
-  color: "purple"
+  icon: "cloud-rain"
+  color: "black"
