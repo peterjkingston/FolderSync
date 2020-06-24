@@ -6,3 +6,6 @@ Folder Syncronization Windows Service app. Listens to a directory and copies the
 * From a shell app (Command Prompt or other), navigate to the coorisponding bin folder, or whereever you've put the build files.
 * Enter the command ".\FolderSyncConsole.exe install start"
 * If successful, an install message will run ending in "FolderSync service has started."
+
+## Known Issues
+![IssueTracker](https://github.com/peterjkingston/FolderSync/workflows/IssueTracker/badge.svg)
