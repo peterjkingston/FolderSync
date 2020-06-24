@@ -24,4 +24,4 @@ jobs:
         uses: ../action-issueTracker
         with:
           MY_DESTINATION: ./Issues.md
-          MY_ISSUE: GITHUB_EVENT_PATH
+          MY_ISSUE: $GITHUB_EVENT_PATH
