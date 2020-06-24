@@ -15,12 +15,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check out Repository
-        if: ${{github.event.name == "issues" && github.event.action == }}
+        if: ${{github.event.name == "issues" && github.event.action == ""}}
         uses: actions/checkout@v2
 
       # Write issue summaries to the Issues.md file
       - name: Create or Modify Issues.md file
-        uses: ../action-IssuesTracker
+        if: ${{github.event.name == "issues" && github.event.action == ""}}
+        uses: ../action-issueTracker
         with:
           MY_DESTINATION: ./Issues.md
           MY_ISSUE: this
