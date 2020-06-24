@@ -3,11 +3,14 @@ description: "Keeps a main readme-esk file with all project issues for easy view
 author: "contactMe@peterjkingston.com"
 
 inputs:
-  MY_NAME:
-    description: "Who to greet"
+  MY_ISSUE:
+    description: "The github issue object"
     required: true
-    default: "World"
-
+  
+  MY_FILEPATH: "The destination path of the issues summary file."
+    required: true
+    default: ./Issues.md
+    
 runs:
   using: "docker"
   image: "Dockerfile"
