@@ -9,3 +9,4 @@ Folder Syncronization Windows Service app. Listens to a directory and copies the
 
 ## Known Issues
 ![IssueTracker](https://github.com/peterjkingston/FolderSync/workflows/IssueTracker/badge.svg)
+![Issues](https://github.com/peterjkingston/FolderSync/blob/master/Issues.md)
