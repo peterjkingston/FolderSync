@@ -11,3 +11,5 @@ Folder Syncronization Windows Service app. Listens to a directory and copies the
 ![IssueTracker](https://github.com/peterjkingston/FolderSync/workflows/IssueTracker/badge.svg)
 
 <?php include 'https://raw.githubusercontent.com/peterjkingston/FolderSync/master/Issues.md';  ?>
+
+<iframe src="https://raw.githubusercontent.com/peterjkingston/FolderSync/master/Issues.md"></iframe>
